@@ -25,7 +25,7 @@ const isExists = async (path: string) => {
 };
 
 const binArchive =
-  process.platform === "win32" ? "noraneko-win-amd64-dev.zip" : "bin.tar.zst";
+  process.platform === "win32" ? "noraneko-win-amd64-dev.zip" : "bin.tar";
 const binDir = "_dist/bin";
 
 try {
@@ -35,7 +35,7 @@ try {
 
 const binPath = path.join(
   binDir,
-  process.platform === "win32" ? "noraneko" : "firefox",
+  "noraneko"
 );
 const binPathExe = binPath + (process.platform === "win32" ? ".exe" : "");
 
@@ -49,7 +49,11 @@ async function decompressBin() {
       process.exit(1);
     }
 
-    new AdmZip(binArchive).extractAllTo(binDir);
+    if (process.platform === "win32") {
+      new AdmZip(binArchive).extractAllTo(binDir);
+    } else {
+      await execa`tar -xf ${binArchive} -C ${binDir}`;
+    }
 
     console.log("decompress complete!");
     await fs.writeFile(binVersion, VERSION);
