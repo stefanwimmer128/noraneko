@@ -14,6 +14,7 @@ import Accounts from "./pages/Accounts";
 import About from "./pages/About";
 import SearchResults from "./pages/Search/index";
 import PanelSidebar from "./pages/PanelSidebar";
+import FireDragon from "@/pages/FireDragon";
 
 export default function App() {
   const [isMobile] = useMediaQuery("(max-width: 768px)");
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/sidebar" element={<PanelSidebar />} />
+                <Route path="/fireDragon" element={<FireDragon />} />
               </Routes>
             </Box>
           </Box>

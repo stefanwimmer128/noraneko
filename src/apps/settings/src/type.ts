@@ -87,3 +87,7 @@ export const zPanelSidebarFormData = z.object({
 });
 
 export type PanelSidebarFormData = z.infer<typeof zPanelSidebarFormData>;
+
+export type FireDragonData = {
+  firefoxSync: boolean,
+};
