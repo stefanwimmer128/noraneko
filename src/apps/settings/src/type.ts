@@ -74,3 +74,7 @@ export const zAccountsFormData = z.object({
 });
 
 export type AccountsFormData = z.infer<typeof zAccountsFormData>;
+
+export type FireDragonData = {
+  firefoxSync: boolean,
+};
