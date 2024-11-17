@@ -3,6 +3,7 @@ import Design from "./pages/Design";
 import Workspaces from "./pages/Workspaces";
 import About from "./pages/About";
 import { useTranslation } from "react-i18next";
+import FireDragon from "@/pages/FireDragon";
 
 export const usePageData = () => {
   const { t } = useTranslation();
@@ -80,6 +81,16 @@ export const usePageData = () => {
       ),
       text: t("pages.aboutBrowser"),
       component: <About />,
+    },
+    fireDragon: {
+      path: "/fireDragon",
+      icon: (
+          <IconMdiAboutCircleOutline
+              style={{ fontSize: "16px", color: "currentColor" }}
+          />
+      ),
+      text: "FireDragon",
+      component: <FireDragon />,
     },
   };
 };
