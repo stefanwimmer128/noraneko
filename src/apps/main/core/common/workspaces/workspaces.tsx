@@ -136,13 +136,21 @@ export class WorkspacesServices {
    * @param workspaceId The workspace id.
    */
   public deleteWorkspace(workspaceId: string): void {
-    this.setCurrentWorkspaceId(
-      this.getDefaultWorkspaceId() ?? workspacesData()[0].id,
+    const workspace = this.getWorkspaceById(workspaceId);
+    const result = Services.prompt.confirm(
+      window as mozIDOMWindowProxy,
+      "Delete Workspace",
+      `Please confirm to delete workspace: ${workspace.name}`,
     );
-    this.removeTabByWorkspaceId(workspaceId);
-    setworkspacesData((prev) => {
-      return prev.filter((workspace) => workspace.id !== workspaceId);
-    });
+    if (result) {
+      this.setCurrentWorkspaceId(
+        this.getDefaultWorkspaceId() ?? workspacesData()[0].id,
+      );
+      this.removeTabByWorkspaceId(workspaceId);
+      setworkspacesData((prev) => {
+        return prev.filter((workspace) => workspace.id !== workspaceId);
+      });
+    }
   }
 
   /**
